@@ -448,6 +448,56 @@ main{padding-top:100px;}
 .hero-title{font-family:'Orangekid', serif; font-size:2.2rem; margin:0 0 12px;}
 .hero-highlight{color:var(--accent); background:linear-gradient(90deg, rgba(191,168,255,0.15), transparent); padding:2px 6px; border-radius:6px}
 
+.hero-with-image {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* ruimte tussen tekst en foto */
+  flex-wrap: wrap; /* voor mobiel, zodat het onder elkaar kan */
+}
+
+.hero-with-image .hero-text {
+  flex: 1 1 400px; /* groeit, maar minimaal 400px */
+}
+
+.hero-with-image .hero-image {
+  flex: 1 1 300px; /* groeit, maar minimaal 300px */
+  display: flex;
+  justify-content: center;
+}
+
+.hero-with-image .hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px; /* mooi afgeronde hoeken */
+  box-shadow: 0 10px 30px rgba(32,24,60,0.1);
+}
+
+.hero-with-image .hero-image {
+  position: relative; /* belangrijk voor absolute positioning van tapes */
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.hero-with-image .hero-image .tape {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 190px;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px rgba(155,100,255,0.9)); /* paarse glow */
+}
+
+.hero-with-image .hero-image .tape-top {
+  top: -15px;
+}
+
+.hero-with-image .hero-image .tape-bottom {
+  bottom: -15px;
+}
+
+
 .lead{color:var(--muted); margin:0 auto 18px; max-width:720px}
 
 /* meta bullets */
@@ -579,3 +629,26 @@ li {
   background: #b98f10; /* nog iets dieper bij klik */
   transform: translateY(0);
 }
+
+/* Witte lineart + paarse gloed voor gradient elementen */
+.gradient-glow {
+  border: 2px solid white; /* dit is de lineart */
+  border-radius: 12px;      /* behouden ronde hoeken indien van toepassing */
+
+  /* Drop-shadow voor paarse gloed */
+  box-shadow: 0 0 16px rgba(155,100,255,0.7),
+              0 0 25px rgba(155,100,255,0.5);
+}
+
+/* Project card glow met witte lijn */
+.project-card-glow {
+  position: relative; /* voor eventuele interne absolute elementen */
+  border: 2px solid white; /* de lineart */
+  border-radius: 12px; /* mooi afgeronde hoeken behouden */
+  overflow: hidden; /* voorkomt dat schaduw buiten komt bij afgeronde hoeken */
+
+  /* Paarse gloed */
+  box-shadow: 0 0 16px rgba(155,100,255,0.7),
+              0 0 25px rgba(155,100,255,0.5);
+}
+
