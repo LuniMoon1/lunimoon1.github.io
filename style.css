@@ -1,0 +1,581 @@
+/* =============== */
+/*  Algemene setup */
+/* =============== */
+:root {
+  --accent: #f5bd1f;    
+  --muted: #ffd93d;
+  --text: #ffe863;
+  --bg: #10002b;        
+  --card: linear-gradient(135deg, #220f42, #3e1a58, #5d2689);
+  --shadow: 0 10px 30px rgba(32, 24, 60, 0.06);
+  --radius: 14px;
+  --max-width: 1100px;
+}
+
+/* ... (hier blijft je OG CSS volledig behouden) ... */
+
+/* ================== */
+/* STAR VARIATIE EN TWINKLE */
+/* ================== */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+  animation: twinkle linear infinite;
+}
+
+.star img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-origin: center center;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Highlight voor geselecteerde project */
+.highlighted-purple {
+  box-shadow: 0 0 20px 6px rgba(128, 0, 128, 0.6);
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+
+}
+/* Uitklapbare case */
+.case-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease, padding 0.3s ease;
+  padding: 0;
+  margin-top: 0;
+}
+
+.case-content.open {
+  padding: 20px 0 24px;
+  margin-top: 12px;
+  border-radius: 8px;
+}
+
+/* Witruimte en leesbaarheid */
+.case-content p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Extra ruimte tussen tekst en afbeeldingen */
+.case-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* max 3 per rij */
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.case-images img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.case-pdf,
+.case-video {
+  margin-top: 20px;
+}
+
+
+/* Ook wat lucht tussen bulletpoints en rest */
+.case-content ul {
+  margin-top: 20px;
+  padding-left: 22px;
+}
+
+.case-content ul li {
+  margin-bottom: 8px;
+}
+
+
+/* Projectcards grid */
+.projects-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+.project-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.project-media img {
+  width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.project-body h2 {
+  margin: 0 0 8px;
+  font-family: 'Orangekid', serif;
+  font-size: 1.1rem;
+}
+
+.project-body p {
+  margin: 0 0 12px;
+}
+
+
+.btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* ... (houd hier je volledige bestaande CSS voor header/nav etc.) ... */
+
+/* =============== */
+/* Lokale font + header/nav lettertype */
+/* =============== */
+@font-face {
+  font-family: 'Neon Bines';
+  src: url('fonts/NeonBines.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Orangekid';
+  src: url('fonts/Orange\ Kid.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Logo en nav-link gebruiken Neon Bines */
+.brand.logo-left, .main-nav .nav-link {
+  font-family: 'Neon Bines', sans-serif;
+}
+
+/* Neon streepje onder actieve link */
+.main-nav .nav-link.active {
+  position: relative;
+}
+
+.main-nav .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; /* ruimte onder link */
+  left: 0;
+  width: 100%;
+  height: 3px; /* dikte streep */
+  background-color: #a75ef9; /* neon kleur */
+  box-shadow: 0 0 5px #a75ef9, 0 0 10px #a75ef9, 0 0 20px #a75ef9;
+  border-radius: 2px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+}
+
+.container{max-width:var(--max-width); margin:0 auto; padding:0 20px;}
+
+/* ================== */
+/* Header (fixed)     */
+/* ================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: linear-gradient(to right, rgba(34,15,66,0.6), rgba(62,26,88,0.6), rgba(93,38,137,0.6));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(120,110,140,0.06);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-family: 'Neon Bines', sans-serif;
+}
+
+/* Naomi helemaal links + logo */
+.brand.logo-left {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 12px;
+  text-decoration: none;
+  font-family: 'Neon Bines', sans-serif;
+}
+
+/* Maanlogo met dezelfde glow en animatie als de oude ster */
+.brand-logo {
+  width: 26px;
+  height: auto;
+  vertical-align: middle;
+  transform: translateY(-1px);
+  transition: transform 0.25s ease, filter 0.25s ease;
+  filter: drop-shadow(0 0 5px #a75ef9)
+          drop-shadow(0 0 10px #a75ef9)
+          drop-shadow(0 0 20px #a75ef9)
+          drop-shadow(0 0 40px #a75ef9);
+  animation: neon-pulse-logo 3s infinite alternate;
+}
+
+/* Hover voor wat extra levendigheid */
+.brand-logo:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 10px #a75ef9)
+          drop-shadow(0 0 20px #a75ef9)
+          drop-shadow(0 0 30px #a75ef9)
+          drop-shadow(0 0 50px #a75ef9);
+}
+
+/* Glow en animatie voor de tekst naast de maan */
+.brand.logo-left .brand-text {
+  color: #fff;
+  text-shadow:
+    0 0 5px #a75ef9,
+    0 0 10px #a75ef9,
+    0 0 20px #a75ef9,
+    0 0 40px #a75ef9;
+  font-family: 'Neon Bines', sans-serif;
+  animation: neon-pulse-header 3s infinite alternate;
+}
+
+/* ... rest van je CSS blijft exact hetzelfde ... */
+
+/* Glow-animaties voor header en logo */
+@keyframes neon-pulse-header {
+  0%,100% {
+    text-shadow:
+      0 0 5px #a75ef9,
+      0 0 10px #a75ef9,
+      0 0 20px #a75ef9,
+      0 0 40px #a75ef9;
+  }
+  50% {
+    text-shadow:
+      0 0 8px #a75ef9,
+      0 0 16px #a75ef9,
+      0 0 30px #a75ef9,
+      0 0 60px #a75ef9;
+  }
+}
+
+@keyframes neon-pulse-logo {
+  0%,100% {
+    filter: drop-shadow(0 0 5px #a75ef9)
+            drop-shadow(0 0 10px #a75ef9)
+            drop-shadow(0 0 20px #a75ef9)
+            drop-shadow(0 0 40px #a75ef9);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px #a75ef9)
+            drop-shadow(0 0 16px #a75ef9)
+            drop-shadow(0 0 30px #a75ef9)
+            drop-shadow(0 0 60px #a75ef9);
+  }
+}
+
+/* Header inner nav gecentreerd */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Nav gecentreerd */
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  font-family: 'Neon Bines', sans-serif; /* lokale font */
+}
+
+.main-nav .nav-link {
+  color: #fff;
+  text-shadow:
+    0 0 5px #a75ef9,
+    0 0 10px #a75ef9,
+    0 0 20px #a75ef9,
+    0 0 40px #a75ef9;
+  font-weight: 500;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: text-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.main-nav .nav-link:hover {
+  text-shadow:
+    0 0 10px #a75ef9,
+    0 0 20px #a75ef9,
+    0 0 30px #a75ef9,
+    0 0 50px #a75ef9;
+}
+
+.main-nav .nav-link.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Mobile nav toggle */
+.nav-toggle {
+  flex: 0 0 auto;
+  display: none;
+  width: 38px; height: 38px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--text);
+  margin: 6px 0;
+  width: 20px;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+/* Neon pulse animatie header */
+@keyframes neon-pulse-header {
+  0%,100% {
+    text-shadow:
+      0 0 5px #a75ef9,
+      0 0 10px #a75ef9,
+      0 0 20px #a75ef9,
+      0 0 40px #a75ef9;
+  }
+  50% {
+    text-shadow:
+      0 0 8px #a75ef9,
+      0 0 16px #a75ef9,
+      0 0 30px #a75ef9,
+      0 0 60px #a75ef9;
+  }
+}
+
+.site-header * {
+  animation: neon-pulse-header 3s infinite alternate;
+  color: #fff;
+  text-shadow:
+    0 0 5px #a75ef9,
+    0 0 10px #a75ef9,
+    0 0 20px #a75ef9,
+    0 0 40px #a75ef9;
+}
+
+/* ================== */
+/* STAR VARIATIE EN TWINKLE */
+/* ================== */
+#star-container svg {
+  stroke: white;
+  fill: none;
+  opacity: 0.6;
+  transition: opacity 1.5s ease;
+  transform-origin: center;
+}
+
+#star-container svg.small {
+  stroke-width: 0.5;
+  opacity: 0.5;
+  animation: twinkle 2.5s infinite ease-in-out;
+}
+
+#star-container svg.medium {
+  stroke-width: 1;
+  opacity: 0.7;
+  animation: twinkle 3s infinite ease-in-out;
+  animation-delay: 1s;
+}
+
+#star-container svg.large {
+  stroke-width: 1.5;
+  opacity: 0.9;
+  animation: twinkle 4s infinite ease-in-out;
+  animation-delay: 0.5s;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ================== */
+/* Hero / sections  */
+/* ================== */
+main{padding-top:100px;}
+.hero{padding:48px 0 32px; text-align:center;}
+.hero-title{font-family:'Orangekid', serif; font-size:2.2rem; margin:0 0 12px;}
+.hero-highlight{color:var(--accent); background:linear-gradient(90deg, rgba(191,168,255,0.15), transparent); padding:2px 6px; border-radius:6px}
+
+.lead{color:var(--muted); margin:0 auto 18px; max-width:720px}
+
+/* meta bullets */
+.meta{list-style:none; display:inline-flex; gap:12px; padding:0; margin:14px 0 0; color:var(--muted); font-size:0.95rem}
+.meta li{display:inline-block; padding:4px 8px; background:rgba(191,168,255,0.04); border-radius:8px;}
+
+/* cards grid */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; margin-top:20px;}
+.card{background:var(--card); padding:18px; border-radius:12px; box-shadow:var(--shadow);}
+
+/* Projects list */
+.projects-list{display:grid; gap:20px; grid-template-columns:1fr;}
+.project-card{display:flex; gap:18px; align-items:flex-start; padding:16px; border-radius:12px; background:var(--card); box-shadow:var(--shadow);}
+.project-media img{width:220px; height:140px; object-fit:cover; border-radius:10px;}
+.project-body h2{margin:0 0 8px; font-family:'Orangekid', serif; font-size:1.1rem;}
+.btn{display:inline-block; padding:8px 14px; background:var(--accent); color:white; text-decoration:none; border-radius:10px; font-weight:600; margin-top:8px}
+
+/* Contact form */
+.contact-form{max-width:720px; margin-top:18px; display:grid; gap:12px}
+.contact-form label{display:block; font-size:0.92rem; color:var(--muted)}
+.contact-form input, .contact-form textarea {
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(30,30,30,0.06);
+  font-size:0.95rem;
+  background:linear-gradient(180deg, #fff, #fff);
+  font-family: 'Orangekid', sans-serif;
+}
+.contact-form button.btn{border:0; cursor:pointer}
+
+
+/* Footer */
+.site-footer{padding:40px 0; color:var(--muted); text-align:center; margin-top:60px}
+
+/* Responsive tweaks */
+@media (max-width:900px){
+  .header-inner{align-items:center}
+  .main-nav{display:none}
+  .nav-toggle{display:block}
+  .project-card{flex-direction:column; align-items:center}
+  .project-media img{width:100%; height:180px}
+}
+
+/* tiny visual niceties */
+h1,h2,h3{color:var(--text)}
+p{margin:0 0 12px}
+
+/* =============== */
+/* Fix: geen gele klik kleur op nav links */
+/* =============== */
+.main-nav .nav-link,
+.main-nav .nav-link:visited,
+.main-nav .nav-link:focus,
+.main-nav .nav-link:active {
+  color: #fff; /* wit laten */
+}
+
+.main-nav .nav-link.active {
+  color: #fff; /* actief blijft wit */
+}
+
+/* Zorg dat de neon streep zichtbaar blijft bij actieve links */
+.main-nav .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #a75ef9;
+  box-shadow: 0 0 5px #a75ef9, 0 0 10px #a75ef9, 0 0 20px #a75ef9;
+  border-radius: 2px;
+}
+
+/* =============== */
+/* Orangekid font voor main content */
+/* =============== */
+main, .hero, .intro, .projects-list, .contact-hero, .project-body, .cards, .card, p, h1, h2, h3 {
+  font-family: 'Orangekid', 'Inter', sans-serif;
+}
+
+h1 {
+  font-size: 37px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 27px;
+}
+
+p {
+  font-size: 22px;
+}
+
+li {
+  font-size: 20px;
+}
+
+
+/* =============== */
+/* Knopstijl (btn) */
+/* =============== */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Orangekid', cursive;
+  font-size: 1rem;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+.btn:hover {
+  background: #d9a915; /* donkerdere geel */
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  background: #b98f10; /* nog iets dieper bij klik */
+  transform: translateY(0);
+}
